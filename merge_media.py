@@ -1,3 +1,43 @@
+"""
+-> A general-purpose concat CLI.
+    -> variable number of inputs
+    -> optional trim per file
+    -> enforce same file type
+    -> support audio and video
+    -> output format matches input
+
+-> It is mandatory to specify absolute path of the output file including the extension.
+-> Input file types must match the output file type.
+-> If start time for a file is specified, its end time must also be specified
+
+Sample usage:
+
+-> CLI input mode:
+python merge_media.py \
+a.mp3 0 27.4 \
+b.mp3 \
+c.mp3 5 15 \
+output.mp3
+
+-> csv input mode:
+python merge_media.py --csv C:/path/input.csv output.mp3
+-> SAMPLE CSV:
+<media_file_1_absolute_path>, <start_time_1>, <end_time_1> 
+<media_file_2_absolute_path>, <start_time_2>, <end_time_2> 
+...
+
+-> JSON input mode:
+python merge_media.py --json input.json output.mp3
+-> SAMPLE JSON:
+[
+  { "path": "C:/a.mp3", "start": 0, "end": 10 },
+  { "path": "C:/b.mp3" },
+  { "path": "C:/c.mp3", "start": 5, "end": 20 }
+]
+
+
+"""
+
 import subprocess
 import sys
 import os
